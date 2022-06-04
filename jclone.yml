@@ -7,7 +7,7 @@
     - community.vmware
 
   vars:
-     ansible_python_interpreter: ""/usr/bin/env python3"
+     ansible_python_interpreter: "/usr/bin/env python3"
 
   tasks: 
     - name: "Instant Clone a VM"
