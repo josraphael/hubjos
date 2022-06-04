@@ -8,7 +8,7 @@
 
   tasks: 
     - name: "Instant Clone a VM"
-      community.vmware.vmware_guest_instant_clone: 
+      vmware_guest_instant_clone: 
         datacenter: HPE-LAB-DC
         datastore: DATASTORE02
         folder: LABVM
