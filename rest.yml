@@ -7,7 +7,7 @@
   - vmware.vmware_rest
 
   vars:
-    ansible_python_interpreter: "/usr/bin/env python3"
+#    ansible_python_interpreter: "/usr/bin/env python3"
 
   tasks:
     - name: Include Secret Environment Items
@@ -17,8 +17,8 @@
 
 
     - name: get vm moid
-      vmware.vmware_rest.vcenter_vm_info:
-#      vcenter_vm_info:
+#      vmware.vmware_rest.vcenter_vm_info:
+      vcenter_vm_info:
        vcenter_hostname: "{{ vc.vcenter_host }}"
        vcenter_password: "{{ vc.vcenter_password }}"
        vcenter_username: "{{ vc.vcenter_username }}"
