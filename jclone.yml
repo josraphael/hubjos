@@ -6,6 +6,9 @@
   collections:
     - community.vmware
 
+  vars:
+     ansible_python_interpreter: /usr/bin/python3
+
   tasks: 
     - name: "Instant Clone a VM"
       community.vmware.vmware_guest_instant_clone: 
