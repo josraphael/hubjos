@@ -4,9 +4,7 @@
   gather_facts: false
 
   collections:
-#  - vmware.vmware_rest
-   - source: /vmware-vmware_rest-2.1.5.tar.gz
-     type: file 
+  - vmware.vmware_rest
 
   vars:
     ansible_python_interpreter: "/usr/bin/env python3"
