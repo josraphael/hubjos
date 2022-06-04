@@ -1,0 +1,19 @@
+---
+  - name: Enable / Disable Ports from firewall
+    hosts: test
+
+    tasks:
+        - name: ICMP block echo-request
+          firewalld:
+            icmp_block: echo-request
+            state: enabled
+        - name: ICMP block echo-reply
+          firewalld:
+            icmp_block: echo-reply
+            state: enabled
+
+        - name: Get info on firewalld state
+          command: "firewall-cmd --list-all"
+          register: fw_out
+        - debug:
+                var: fw_out.stdout_lines

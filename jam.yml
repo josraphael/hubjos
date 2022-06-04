@@ -1,0 +1,10 @@
+---
+  - name: MDATP
+    hosts: all
+    tasks:
+
+    - name: Install MDATP
+      yum:
+          name: mdatp
+          state: latest
+          update_cache: yes

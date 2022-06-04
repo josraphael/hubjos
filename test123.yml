@@ -1,0 +1,10 @@
+-
+  name: copy files to target servers
+  hosts: all
+  tasks:
+    - name: MD ATP Status
+      command: systemctl status mdatp.service
+      register: mdatp_status
+    - debug:
+          var: mdatp_status
+

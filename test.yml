@@ -1,0 +1,28 @@
+---
+  - name: SSH config
+    hosts: all
+    tasks:
+
+      - name: copy files
+        copy:
+          src: /etc/login.warn
+          dest: /etc/
+
+      - name: copy files
+        copy:
+          src: /etc/motd
+          dest: /etc/
+
+      - name: modifying ssh config file
+        shell: echo "Banner /etc/login.warn" >> /etc/ssh/sshd_config
+
+     - name: SELinux Disable
+       lineinfile:
+          path: /etc/sysconfig/selinux
+          regexp: '^SELINUX='
+          line: SELINUX=disabled
+
+      - name: restart ssh
+        service:
+          name: sshd
+          state: restarted

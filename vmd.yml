@@ -1,0 +1,23 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    connection: local
+    gather_facts: no
+    vars:
+      ansible_pyhton_interpreter: "/usr/bin/env pyhton3.6"
+
+    tasks:
+    - name: create vm
+      vmware_guest:
+        hostname: 10.2.250.110
+        username: labtest@vsphere.local
+        password: Labtest@@2022
+        validate_certs: false
+        name: testvm
+        template: rhel7
+        datacenter: HPE-LAB-DC
+        cluster: HPE-LAB-CLUS
+        datastore: DATASTORE1
+        folder: '/vmfs/volumes/6245af90-e63e8838-91fe-0017a4770002/LABVM/'
+        state: poweredon
+        wait_for_ip_address: no

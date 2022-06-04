@@ -1,0 +1,23 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    vars:
+      datastore: DATASTORE03
+
+    tasks:
+      - name: Gather cluster facts from given datacenter
+        vmware_vswitch_info:
+         hostname: 10.2.250.110
+         username: labtest1@vsphere.local
+         password: Labtest@@2022
+         #datacenter: HPE-LAB-DC
+         cluster_name: HPE-LAB-CLUS
+         validate_certs: False
+        delegate_to: localhost
+        register: cluster_facts
+      - debug:
+         #var: cluster_facts["datastores"][1].name
+         var: cluster_facts

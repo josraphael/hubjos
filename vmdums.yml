@@ -1,0 +1,33 @@
+- hosts: localhost 
+  gather_facts: false
+  connection: local 
+  tasks:
+  - name: Clone the template
+    vmware_guest:
+      hostname: 10.2.250.110
+      username: labtest1@vsphere.local
+      password: Labtest@@2022
+      datacenter: HPE-LAB-DC
+      validate_certs: False
+      name: app02
+      template: "RHEL7"
+      datastore: "/vmfs/volumes/6245af90-e63e8838-91fe-0017a4770002/LABVM/"
+      folder: "LABVM"
+      cluster: "HPE-LAB-CLUS"
+      state: poweredon
+      networks:
+      - name: VLAN_500
+        ip: 10.2.250.178
+        netmask: 255.255.255.0
+        gateway: 10.2.250.1
+        type: static
+      hardware:
+        memory_mb: 1024
+        num_cpus: 2
+      customization:
+        dns_servers:
+        - 8.8.8.8
+        domain : poc.org
+        hostname: app02
+           
+    delegate_to: localhost

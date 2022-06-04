@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    vcenter_server: "10.2.250.110"
+    vcenter_user: "labtest1@vsphere.local"
+    vcenter_pass: "Labtest@@2022"
+    datacenter_name: "HPE-LAB-DC"
+    cluster_name: "HPE-LAB-CLUS"
+  tasks:
+    name: "testvm"
+    template: "Linux 7.9"
+    folder: "/vmfs/volumes/6245af90-e63e8838-91fe-0017a4770002/LABVM/"
+    state: poweredon
+    wait_for_ip_address: no

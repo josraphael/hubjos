@@ -1,0 +1,28 @@
+---
+  - name: Set the state of a virtual machine to poweroff
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    vars:
+      datastore: DATASTORE03
+
+    tasks:
+      - name: Gather cluster facts from given datacenter
+        vmware_vm_info:
+         hostname: 10.2.250.110
+         username: labtest1@vsphere.local
+         password: Labtest@@2022
+         #state: powered-off
+         #datacenter: HPE-LAB-DC
+         #cluster_name: HPE-LAB-CLUS
+         validate_certs: False
+        delegate_to: localhost
+        register: cluster_facts
+      - debug:
+         #var: cluster_facts["datastores"][1].name
+         var: cluster_facts["virtual_machines"][].guest_name
+
+    #folder: "/{{ datacenter_name }}/vm/my_folder"
+    #name: "{{ guest_name }}"
+

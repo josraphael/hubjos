@@ -1,0 +1,21 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    vars:
+      datastore: DATASTORE03
+
+    tasks:
+    - name: Set the state of a virtual machine to poweroff
+      vmware_guest_powerstate:
+       hostname: 10.2.250.110
+       username: labtest1@vsphere.local
+       password: Labtest@@2022
+       validate_certs: false
+       folder: "LABVM"
+       name: "pocvm-clone"
+       state: powered-off
+      delegate_to: localhost
+      register: deploy

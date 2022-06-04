@@ -1,0 +1,13 @@
+- hosts: all
+  
+  tasks:
+ 
+  - name: yum update check
+    command: yum check-update
+    register: yum_output
+
+  - debug: msg="{{yum_output.stdout_lines}}"
+ # - name: starting yum update ...!
+    #yum: name="*" state=latest
+    #register: update_op
+  #- debug: msg="{{update_op.results}}"

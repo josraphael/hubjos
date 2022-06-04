@@ -1,0 +1,20 @@
+--- 
+- 
+  hosts: localhost
+  name: "create vm from template"
+
+  tasks: 
+    - name: "Instant Clone a VM"
+      community.vmware.vmware_guest_instant_clone: 
+        datacenter: HPE-LAB-DC
+        datastore: DATASTORE02
+        folder: LABVM
+        host: hplab-esxi01.hplab.local
+        hostname: "10.2.250.110"
+        name: pocvm-clone
+        parent_vm: pocvm
+        password: Labtest@@2022
+        username: labtest1@vsphere.local
+        validate_certs: false
+  vars: 
+    datastore: DATASTORE03

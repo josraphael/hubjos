@@ -1,0 +1,17 @@
+- name: collect all registered virtual machines
+  hosts: all
+  #community.vmware.vmware_guest_info:
+  community.vmware.vmware_vm_info:
+  gather_facts: False
+  validate_certs: no
+  #vmware_vm_info:
+    #hostname: "https://hplab-vcse01.hplab.local/"
+    hostname: "10.2.250.110"
+    username: "labtest1@vsphere.local"
+    password: "Labtest@@2022"
+   # datancenter: HPE-LAB-DC
+  #delegate_to: localhost
+  register: info
+- debug:
+    var: vminfo.virtual_machines
+

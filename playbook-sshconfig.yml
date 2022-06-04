@@ -1,0 +1,26 @@
+---
+  - name: ssh configuration management
+    hosts: all
+    tasks:
+
+      - name: copy files
+        copy:
+          src: /etc/login.warn
+          dest: /etc/
+
+      - name: copy files
+        copy:
+          src: /etc/motd
+          dest: /etc/
+
+      - name: Ensure SELinux is set to enforcing mode
+        lineinfile:
+          path: /etc/ssh/sshd_config
+          regexp: '^PasswordAuthentication'
+          line: "PasswordAuthentication yes"
+
+      - name: modifying ssh config file
+        shell: echo "Banner /etc/login.warn" >> /etc/ssh/sshd_config
+
+      - name: restart ssh
+        shell: systemctl restart sshd.service

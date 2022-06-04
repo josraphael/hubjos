@@ -1,0 +1,30 @@
+---
+- hosts: test
+  become: no
+  gather_facts: no
+
+  tasks:
+
+  - name: check available security updates
+    yum:
+      list: updates
+      update_cache: yes
+      security: yes
+      bugfix: no
+    register: result
+
+  - name: Show result
+    debug:
+      msg: "{{ result }}"
+
+  - name: check security updates
+    shell:
+      cmd: yum updateinfo list security
+      warn: false
+    register: result
+    changed_when: false
+    failed_when: result.rc != 0
+
+  - name: Show result
+    debug:
+      msg: "{{ result.stdout }}"

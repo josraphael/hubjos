@@ -1,0 +1,39 @@
+- name:
+  hosts: localhost
+  become: false
+  gather_facts: no 
+
+  collections:
+  - vmware.vmware_rest
+
+  vars:
+#    ansible_python_interpreter: "/usr/bin/env python3"
+
+  tasks:
+    - name: Include Secret Environment Items
+      include_vars:
+        file: variables.yml
+        name: vc
+
+    - name: vCenter Login
+      uri:
+        url: "https://{{vc.vcenter}}/rest/com/vmware/cis/session"
+        force_basic_auth: yes
+        method: POST
+        user: "{{vc.username}}"
+        password: "{{vc.password}}"
+        status_code: 200
+        validate_certs: no
+      register: login
+
+    - name: Get hosts from vCenter
+      uri:
+        url: "https://{{vc.vcenter}}/rest/vcenter/host"
+        force_basic_auth: yes
+        validate_certs: no
+        headers:
+          Cookie: "{{login.set_cookie}}"
+      register: vchosts
+
+    - debug:
+       var: vchosts

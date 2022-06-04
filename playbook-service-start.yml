@@ -1,0 +1,8 @@
+-
+    name: Execute a script on all web server nodes
+    hosts: test
+    become: yes    
+    tasks:
+    - name: Start sshd service
+      service: name=sshd state=started
+

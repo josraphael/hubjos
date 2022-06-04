@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks:
+    - name: Add rhel repo and install packages
+      yum_repository:
+        name: ftp
+        description: “localrepo”
+        baseurl: "ftp://10.2.250.171/pub/rhel7"
+        gpgcheck: 0

@@ -1,0 +1,26 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    vars:
+      datastore: DATASTORE03
+      name: pocvm
+
+    tasks:
+    - name: create vm
+      vmware_guest:
+        hostname: 10.2.250.110
+        username: labtest1@vsphere.local
+        password: Labtest@@2022
+        validate_certs: false
+        name: "{{ vmname }}"
+        template: 'RHEL7'
+        datacenter: HPE-LAB-DC
+        cluster: HPE-LAB-CLUS
+        datastore: "{{ vmdatastore }}"
+        #datastore: DATASTORE02
+        folder: "LABVM"
+        state: poweredon
+        wait_for_ip_address: no

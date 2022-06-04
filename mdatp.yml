@@ -1,0 +1,30 @@
+-
+  name: copy files to target servers
+  hosts: all
+  tasks:
+    - name: copy files
+      copy:
+        src: /etc/yum.repos.d/microsoft-prod.repo
+        dest: /etc/yum.repos.d/
+    - name: copy files
+      copy:
+        src: /etc/yum.repos.d/microsoft.asc
+        dest: /etc/yum.repos.d/
+    - name: certificate import
+      command: rpm --import /etc/yum.repos.d/microsoft.asc
+    #- name: yum cache update
+    #  command: yum makecache
+    #- name: Installing MD ATP
+    #  command: yum install mdatp
+    #
+    - name: Install MDATP
+      yum:
+          name: mdatp
+          state: latest
+          update_cache: yes
+     
+    - name: MD ATP Status
+      command: systemctl status mdatp  
+      register: mdatp_status
+    - debug:
+          var: mdatp_status

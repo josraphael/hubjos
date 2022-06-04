@@ -1,0 +1,12 @@
+---
+- hosts: all
+  user: root
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Enable FIREWALL on system reboot
+      service: name=firewalld enabled=yes
+    - name: Start service firewalld, if stopped
+      service:
+        name: firewalld
+        state: started

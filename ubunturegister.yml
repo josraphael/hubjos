@@ -1,0 +1,12 @@
+---
+ - name: ubuntu subscription..!
+   hosts: all
+   tasks:
+   - name: ubuntu activation
+     shell: ua attach C124bvGGbHYVffwYsaqZ5nxfd5oBuv
+
+   - name: activation status
+     shell: ua status
+     register: ua_status
+   - debug:
+        var: ua_status

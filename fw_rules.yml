@@ -1,0 +1,25 @@
+---
+- name: FW rules for the HTTP
+  hosts: all
+  gather_facts: no
+  tasks:
+        - name: call firewalld and add the service based rules
+          firewalld:
+                permanent: yes
+                immediate: yes
+                service: "{{ item }}"
+                state: enabled
+          with_items:
+                - http
+                - https
+        - name: add firewalld port based rules
+          firewalld:
+                permanent: yes
+                immediate: yes
+                port: 5555/tcp
+                state: disabled
+        - name: Get info on firewalld state
+          command: "firewall-cmd --list-all-zones"
+          register: fw_out
+        - debug:
+                var: fw_out.stdout_lines

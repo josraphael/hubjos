@@ -1,0 +1,27 @@
+- name:  Clone a virtual machine
+  hosts: all
+  #tasks:
+  vmware_guest:
+    hostname: "{{ 10.2.250.110 }}"
+    username: "{{ labtest1@vsphere.local }}"
+    password: "{{ Labtest@@2022 }}"
+    validate_certs: no
+    datacenter: "{{ HPE-LAB-DC }}"
+    state: present
+    folder: "{{ LABVM }}"
+    template: "{{ template }}"
+    name: "{{ pocvm }}"
+    cluster: HPE-LAB-CLUS
+    networks:
+      - name: VM Network
+        ip: 10.2.250.185
+        netmask: 255.255.255.0
+    wait_for_ip_address: true
+    customization:
+      #domain: "{{ guest_domain }}"
+      dns_servers:
+        - 8.9.9.9
+        - 7.8.8.9
+        #  dns_suffix:
+        #    - example.com
+        #    - example2.com

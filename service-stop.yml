@@ -1,0 +1,12 @@
+---
+- hosts: all
+  user: root
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: Disable HTTP on system reboot
+      service: name=firewalld enabled=no
+    - name: Stop service firewalld, if started
+      service:
+        name: firewalld
+        state: stopped

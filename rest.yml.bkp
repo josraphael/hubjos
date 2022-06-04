@@ -1,0 +1,24 @@
+- name:
+  hosts: localhost
+  become: false
+  gather_facts: true 
+
+  collections:
+  - vmware.vmware_rest
+
+
+  tasks:
+    - name: Include Secret Environment Items
+      include_vars:
+        file: variables.yml
+        name: vc
+
+
+    - name: get vm moid
+      vmware.vmware_rest.vcenter_vm_info:
+       vcenter_hostname: "{{ vc.vcenter_host }}"
+       vcenter_password: "{{ vc.vcenter_password }}"
+       vcenter_username: "{{ vc.vcenter_username }}"
+       vcenter_validate_certs: no
+      register: vm_find_res
+

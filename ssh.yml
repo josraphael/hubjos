@@ -1,0 +1,16 @@
+---
+- name: Fixing SSH Weak Key Exchange Algorithms, Cipher Block Chaining (CBC), and MACs Enabled
+  hosts: all
+  #serial: 7
+  become: true
+- name: Removing old KexAlgorithms entry from the sshd configuration file
+   lineinfile:
+    path: /etc/ssh/sshd_config
+    state: absent
+    regexp: '^KexAlgorithms'
+  
+  # Restart SSH Service
+- name: Restarting sshd.service on {{ ansible_fqdn }}
+   service:
+       name: sshd
+       state: restarted

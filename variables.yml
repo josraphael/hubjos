@@ -1,0 +1,10 @@
+---    
+vcenter_host: hplab-vcse01.hplab.local
+vcenter_username: labtest1@vsphere.local
+vcenter_password: Labtest@@2022
+vcenter_validate_certs: no
+
+vcenter: hplab-vcse01.hplab.local
+username: labtest1@vsphere.local
+password: Labtest@@2022
+

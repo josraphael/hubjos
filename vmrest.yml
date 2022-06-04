@@ -1,0 +1,21 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    collections:
+     - vmware.vmware_rest
+    vars:
+      datastore: DATASTORE03
+      ansible_python_interpreter: "/usr/bin/env python3"
+      VMWARE_HOST: hplab-vcse01.hplab.local
+      VMWARE_USER: labtest1@vsphere.local
+      VMWARE_PASSWORD: Labtest@@2022
+      VMWARE_VALIDATE_CERTS: no
+
+    tasks:
+    - name: Info
+#      vmware.vmware_rest.vcenter_cluster_info:
+      vcenter_cluster_info:
+      register: existing_vms

@@ -1,0 +1,22 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+#    collections:
+#     - vmware.vmware_rest
+    vars:
+      datastore: DATASTORE03
+#      ansible_python_interpreter: /usr/bin/python3
+      vcenter_hostname: 10.2.250.110
+      vcenter_username: labtest1@vsphere.local
+      vcenter_password: Labtest@@2022
+      vcenter_validate_certs: no
+
+
+    tasks:
+    - name: Instant Clone a VM
+      vmware.vmware_rest.vcenter_cluster_info:
+#      vcenter_host_info:
+      register: existing_vms

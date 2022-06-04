@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  tasks:
+          - name: Update all packages on Ubuntu Linux
+            apt:
+                    name: '*'
+                    state: latest
+
+          - name: Check if a reboot is needed on all Ubuntu based servers
+            register: linux_reboot_required_file
+            stat: path=/boot/do_purge_kernels get_md5=no
+
+          - name: Reboot the Ubuntu box if kernel updated
+            reboot:
+              msg: "Reboot initiated by Ansible for kernel updates"
+              connect_timeout: 5
+              reboot_timeout: 300
+              pre_reboot_delay: 0
+              post_reboot_delay: 30
+              test_command: uptime
+            when: linux_reboot_required_file.stat.exists

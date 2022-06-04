@@ -1,0 +1,13 @@
+-
+    name: 'Install required packages'
+    hosts: all
+    vars:
+        packages:
+            - httpd
+            - binutils
+    tasks:
+        -
+            yum:
+                name: '{{ packages }}'
+                state: present
+            with_items: '{{ packages }}'

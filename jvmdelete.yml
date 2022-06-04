@@ -1,0 +1,21 @@
+---
+  - name: create vm from template
+    hosts: localhost
+    #connection: local
+    #gather_facts: no
+    become: false
+    vars:
+      datastore: DATASTORE03
+
+    tasks:
+    - name: Remove "{{ vm_name }}"
+      vmware_guest:
+       hostname: 10.2.250.110
+       username: labtest1@vsphere.local
+       password: Labtest@@2022
+       validate_certs: no
+       cluster: "HPE-LAB-CLUS"
+       name: "pocvm-clone"
+       state: absent
+      delegate_to: localhost
+      register: deploy

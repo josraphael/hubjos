@@ -1,0 +1,14 @@
+me: subscription-manager
+  hosts: all
+  become: true
+  vars:
+    subscription_username: "jotiram.mane@mannai.com.qa"
+    subscription_password: "Mannai@2022"
+  tasks:
+    - name: register with subscription-manager
+            redhat_subscription:
+            state: absent
+            username: "{{ subscription_username }}"
+            password: "{{ subscription_password }}"
+            auto_attach: true
+      
