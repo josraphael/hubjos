@@ -1,0 +1,26 @@
+- name: Synergy
+  hosts: localhost
+  become: false
+  gather_facts: false
+
+  collections:
+  - oneview_server_profile_facts
+
+  vars:
+
+  tasks:
+    - name: Include Secret Environment Items
+      include_vars:
+        file: variables.yml
+        name: vc
+
+
+    - name: Gather facts about all Server Profiles
+      oneview_server_profile_facts:
+       hostname: 172.16.101.48
+       username: administrator
+       password: my_password
+       api_version: 1600
+      delegate_to: localhost
+
+    - debug: var=server_profiles
