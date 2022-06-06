@@ -1,0 +1,7 @@
+- read_mail:
+    host: "{{ imap_host }}"
+    username: "{{ imap_user }}"
+    password: "{{ imap_pass }}"
+    ssl: True
+    filter:
+      subject: "subject_should_contain_this"
