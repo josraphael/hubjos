@@ -1,2 +1,4 @@
 collections:
    - name: vmware.vmware_rest
+   - name: hpe.ilo
+   - name: community.vmware

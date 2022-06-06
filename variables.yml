@@ -8,3 +8,8 @@ vcenter: hplab-vcse01.hplab.local
 username: labtest1@vsphere.local
 password: Labtest@@2022
 
+synergy.hostname: 172.16.101.48
+synergy.username: administrator
+synerg.password: my_password
+
+
