@@ -20,6 +20,7 @@
        baseuri: "ilo151.hplab.local"
        username: "admin"
        password: "P@ssw0rd"
+       http_schema: http
       delegate_to: localhost
 
 
