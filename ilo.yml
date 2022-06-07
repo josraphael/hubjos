@@ -9,10 +9,10 @@
   vars:
 
   tasks:
-    - name: Include Secret Environment Items
-      include_vars:
-        file: variables.yml
-        name: vc
+#    - name: Include Secret Environment Items
+#      include_vars:
+#        file: variables.yml
+#        name: vc
 
 
     - name: Get physical drives details
