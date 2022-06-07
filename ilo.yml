@@ -4,7 +4,10 @@
   gather_facts: false
 
   collections:
-  - hpe.ilo
+   - hpe.ilo
+
+  roles:
+    - role: get_physical_drives_details
 
   vars:
 
