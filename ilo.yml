@@ -6,8 +6,8 @@
   collections:
    - hpe.ilo
 
-  roles:
-    - role: get_physical_drives_details
+#  roles:
+#    - role: get_physical_drives_details
 
   vars:
 
